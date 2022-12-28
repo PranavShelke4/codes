@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+<h3>Sets</h3>
+<p>
+    //sets<br>
+def removeDuplicate(SL):<br>
+SL1=[]<br>
+for i in SL:<br>
+ if i not in SL1:<br>
+ SL1.append(i)<br>
+return SL1<br>
+def TakeInput(sport):<br>
+n=int(input(&quot;Enter Number of Students Playing &quot;+sport+&quot;:&quot;));<br>
+SL=[];<br>
+SL1=[]<br>
+print(&quot;Enter Names of N student&quot;);<br>
+for i in range(n):<br>
+ name=input();<br>
+ SL.append(name);<br>
+SL1=removeDuplicate(SL);<br>
+return SL1;<br>
+def DisplayList(sport,SL):<br>
+print(&quot;Students Playing &quot;+sport+&quot;:&quot;);<br>
+for i in range(len(SL)):<br>
+ print(SL[i], end=&quot; &quot;);<br>
+print();<br>
+def DisplayAns(SL):<br>
+for i in range(len(SL)):<br>
+ print(SL[i], end=&quot; &quot;);<br>
+print();<br>
+def InterSection(SL1,SL2):<br>
+SL3=[];<br>
+for i in SL1:<br>
+ if i in SL2 :<br>
+ SL3.append(i);<br>
+return SL3;<br>
+def diff(SL1,SL2):<br>
+SL3=[];<br>
+for i in SL1:<br>
+ if i not in SL2:<br>
+ SL3.append(i);<br>
+return SL3;<br>
+def Unioin(SL1,SL2):<br>
+SL3=SL1;<br>
+for i in SL2:<br>
+ if i not in SL1:<br>
+ SL3.append(i);<br>
+return SL3;<br>
+def sym_diff(SL1,SL2):<br>
+SL3=diff(SL1,SL2);<br>
+SL4=diff(SL2,SL1);<br>
+SL5=Unioin(SL3,SL4);<br>
+return SL5;<br>
+def A_Ans(SL1,SL2):<br>
+SL4=InterSection(SL1,SL2);<br>
+return SL4;<br>
+def B_Ans(SL1,SL2):<br>
+SL4=sym_diff(SL1,SL2);<br>
+return SL4;<br>
+def C_Ans(SL1,SL2,SL3):<br>
+SL4=diff(SL1,Unioin(SL2,SL3));<br>
+return SL4;<br>
+def D_Ans(SL1,SL2,SL3):<br>
+SL4=diff(InterSection(SL1,SL3),SL2);<br>
+return SL4;<br>
+SL=[]<br>
+SEComp=[];<br>
+n=int(input(&quot;Enter Number of Students in SEComp:&quot;));<br>
+print(&quot;Enter Names of N student&quot;);<br>
+for i in range(n):<br>
+name=input();<br>
+SL.append(name);<br>
+SEComp=removeDuplicate(SL);<br>
+Cricket=TakeInput(&quot;Cricket&quot;);<br>
+Badminton=TakeInput(&quot;Badminton&quot;);<br>
+Football=TakeInput(&quot;Football&quot;);<br>
+flag=1;<br>
+while flag==1:<br>
+print(&quot;-------------------MENU----------------------&quot;);<br>
+print(&quot;1.List of students who play both cricket and badminton &quot;);<br>
+print(&quot;2.List of students who play either cricket or badminton but not both&quot;);<br>
+print(&quot;3.Number of students who play neither cricket nor badminton&quot;);<br>
+print(&quot;4.Number of students who play cricket and football but not badminton.&quot;);<br>
+print(&quot;5.Exit&quot;);<br>
+ch=int(input(&quot;Enter Your Choice:&quot;));<br>
+if ch==1:<br>
+ print(&quot;List of students who play both cricket and badminton: &quot;,A_Ans(Cricket,Badminton))<br>
+ a=input(&quot;\nDo you want to continue:(Yes/No):&quot;);<br>
+ if a==&quot;yes&quot;:<br>
+ flag=1;<br>
+ else:<br>
+ flag=0;<br>
+<br>
+elif ch==2:<br>
+ print(&quot;List of students who play either cricket or badminton but not both:<br>
+&quot;,B_Ans(Cricket,Badminton))<br>
+ a=input(&quot;\nDo you want to continue:(Yes/No):&quot;);<br>
+ if a==&quot;yes&quot;:<br>
+ flag=1;<br>
+ else:<br>
+ flag=0;<br>
+<br>
+elif ch==3:<br>
+ print(&quot;Number of students who play neither cricket nor badminton:<br>
+&quot;,C_Ans(SEComp,Cricket,Badminton))<br>
+ a=input(&quot;\nDo you want to continue:(Yes/No):&quot;);<br>
+ if a==&quot;yes&quot;:<br>
+ flag=1;<br>
+ else:<br>
+ flag=0;<br>
+<br>
+elif ch==4:<br>
+ print(&quot;Number of students who play cricket and football but not badminton:<br>
+&quot;,D_Ans(Cricket,Badminton,Football))<br>
+ a=input(&quot;\nDo you want to continue:(Yes/No):&quot;);<br>
+ if a==&quot;yes&quot;:<br>
+ flag=1;<br>
+ else:<br>
+ flag=0;<br>
+<br>
+elif ch==5:<br>
+ flag=0;<br>
+ print(&quot;Thanks For Using our system&quot;);<br>
+<br>
+else:<br>
+ print(&quot;Wrong Choice!!!!!&quot;);<br>
+ a=input(&quot;\nDo you want to continue(Yes/No):&quot;);<br>
+ if a==&quot;yes&quot;:<br>
+ flag=1;<br>
+ else:<br>
+ flag=0;
+</p>
+
+<h2>Infix to Postfix</h2>
+<p>
+    //Infix to Postfix<br>
+#include<iostream><br>
+#include<stack><br>
+#include<string><br>
+using namespace std;<br>
+// Function to return precedence of operators<br>
+int prec(char c)<br>
+{<br>
+ if (c == '^')<br>
+ return 3;<br>
+ else if (c == '/' || c == '*')<br>
+ return 2;<br>
+ else if (c == '+' || c == '-')<br>
+ return 1;<br>
+ else<br>
+ return -1;<br>
+}<br>
+void infixToPostfix(string s)<br>
+{<br>
+stack<char> st;<br>
+string result;<br>
+for (int i = 0; i < s.length(); i++) {<br>
+ char c = s[i];<br>
+if ((c >= 'a' &amp;&amp; c <= 'z') || (c >= 'A' &amp;&amp; c <= 'Z')<br>
+|| (c >= '0' &amp;&amp; c <= '9'))<br>
+result += c;<br>
+// If the scanned character is an // &lsquo;(&lsquo;, push it to the stack.<br>
+else if (c == '(')<br>
+st.push('(');<br>
+// If the scanned character is an &lsquo;)&rsquo;,<br>
+// pop and to output string from the stack<br>
+// until an &lsquo;(&lsquo; is encountered.<br>
+else if (c == ')')<br>
+{<br>
+ while (st.top() != '(')<br>
+ {<br>
+ result += st.top();<br>
+ st.pop();<br>
+}<br>
+st.pop();<br>
+}<br>
+// If an operator is scanned<br>
+else {<br>
+while (!st.empty() &amp;&amp; prec(s[i]) <= prec(st.top())) {<br>
+ result += st.top();<br>
+ st.pop();<br>
+<br>
+}<br>
+st.push(c);<br>
+}<br>
+}<br>
+// Pop all the remaining elements from the stack while (!st.empty()) { result += st.top(); st.pop(); }<br>
+cout << result << endl;<br>
+}<br>
+// Driver's code<br>
+int main() {<br>
+string exp = &quot;a+b*(c^d-e)^(f+g*h)-i&quot;;<br>
+// Function call<br>
+infixToPostfix(exp);<br>
+return 0;<br>
+<br>
+}
+</p>
+
+<h2>2. String op</h2>
+<p>
+    //String operations<br>
+str=&quot;atharva is a smart guyyug trams a si avrahta&quot;<br>
+j=0<br>
+k=0<br>
+#for i in range (len(str)):<br>
+ #if(str[i]==' ' and j<k):<br>
+ # j=k<br>
+ # k=0<br>
+ #elif(str[i]==' '):<br>
+ # k=0<br>
+# else:<br>
+ # k+=1<br>
+#print(j)<br>
+l=max(str.split(),key=len)<br>
+print(len(l))<br>
+ch=''<br>
+ch=input()<br>
+count=0<br>
+for i in range (len(str)):<br>
+ if(str[i]==ch):<br>
+ count+=1<br>
+print(count)<br>
+rev=str[::-1]<br>
+print(rev)<br>
+if(rev==str):<br>
+ print(&quot;String is Palindrome&quot;)<br>
+else:<br>
+ print(&quot;String is not Palindrome&quot;)<br>
+<br>
+index=str.index(&quot;smart&quot;)<br>
+print(index)<br>
+word=input()<br>
+wor=str.split(word)<br>
+print(len(word))<br>
+<br>
+
+</p>
+
+<h2>Singly Linked List</h2>
+<p>
+    #include<iostream><br>
+        using namespace std;<br>
+        <br>
+        typedef struct node<br>
+        {<br>
+         int data;<br>
+         node *next;<br>
+        }node;<br>
+        <br>
+        class SLL<br>
+        {<br>
+         public: <br>
+         node* create()<br>
+         {<br>
+         int x,val;<br>
+         node *head, *p;<br>
+         <br>
+         cout<<&quot;How many nodes do you want to create : &quot;;<br>
+         cin>>x;<br>
+         cout<<&quot;\n Enter data of node : &quot;;<br>
+         cin>>val;<br>
+         head=new node();<br>
+         head->data=val;<br>
+         head->next=NULL;<br>
+         p=head;<br>
+         for(int i=2;i<=x;i++)<br>
+         {<br>
+         cout<<&quot;\n Enter data of node : &quot;;<br>
+         cin>>val;<br>
+         p->next=new node();<br>
+         p=p->next;<br>
+         p->data=val;<br>
+         p->next=NULL;<br>
+         <br>
+         }<br>
+         <br>
+         return head;<br>
+         <br>
+         }<br>
+         <br>
+         void print(node *head)<br>
+         {<br>
+         if(head==NULL)<br>
+         {<br>
+         cout<<&quot;\n Not a single node is present.....&quot;;<br>
+         }<br>
+         else<br>
+         { <br>
+         cout<<&quot;\n &quot;;<br>
+         while(head!=NULL)<br>
+         {<br>
+         cout<<&quot; | &quot;<<head->data;<br>
+         head=head->next;<br>
+         }<br>
+         <br>
+         cout<<&quot;\n &quot;;<br>
+         }<br>
+         }<br>
+         <br>
+         void CountNode(node *head)<br>
+         {<br>
+         if(head==NULL)<br>
+         {<br>
+         cout<<&quot;\n Not a single node is present.....&quot;;<br>
+         }<br>
+         else<br>
+         {<br>
+         int count=1;<br>
+         while(head->next!=NULL)<br>
+         {<br>
+         count++;<br>
+         head=head->next;<br>
+         }<br>
+         <br>
+         cout<<&quot;\n Total Nodes in SSL : &quot;<<count;<br>
+         }<br>
+         <br>
+         }<br>
+         <br>
+         void SearchNode(node *head)<br>
+         {<br>
+         if(head==NULL)<br>
+         {<br>
+         cout<<&quot;\n Not a single node is present.....&quot;;<br>
+         }<br>
+         else<br>
+         {<br>
+         int Sdata,flag=0;<br>
+         cout<<&quot;\n Enter data of node that which you want to search : &quot;;<br>
+         cin>>Sdata;<br>
+         <br>
+         while(head!=NULL)<br>
+         {<br>
+         if(head->data==Sdata)<br>
+         {<br>
+         flag++;<br>
+         cout<<&quot;\n Your serach is found ....&quot;;<br>
+         break;<br>
+         }<br>
+         <br>
+         head=head->next;<br>
+         }<br>
+         <br>
+         if(flag==0)<br>
+         cout<<&quot;\n Your search does no found.......&quot;;<br>
+         }<br>
+         <br>
+         }<br>
+         <br>
+         node* InsertBegin(node *head)<br>
+         {<br>
+         node *p;<br>
+         int val;<br>
+         cout<<&quot;\n Enter data of node : &quot;;<br>
+         cin>>val;<br>
+         p=new node();<br>
+         p->data=val;<br>
+         p->next=NULL;<br>
+         <br>
+         if(head==NULL)<br>
+         {<br>
+         return p;<br>
+         }<br>
+         else<br>
+         {<br>
+         p->next=head;<br>
+         return p;<br>
+         }<br>
+         }<br>
+         <br>
+         node* InsertMiddle(node *head)<br>
+         {<br>
+         node *p, *q;<br>
+         int val,loc;<br>
+         cout<<&quot;\nEnter Location for inserting new node at Middle : &quot;;<br>
+         cin>>loc;<br>
+         cout<<&quot;\n Enter data of node : &quot;;<br>
+         cin>>val;<br>
+         p=new node();<br>
+         p->data=val;<br>
+         p->next=NULL;<br>
+         <br>
+         if(head==NULL)<br>
+         {<br>
+         return p;<br>
+         }<br>
+         else<br>
+         {<br>
+         q=head;<br>
+         for(int i=1;i<loc-1;i++)<br>
+         {<br>
+         q=q->next;<br>
+         }<br>
+         <br>
+         p->next=q->next;<br>
+         q->next=p;<br>
+         return head;<br>
+         }<br>
+         }<br>
+         <br>
+         node* InsertEnd(node *head)<br>
+         {<br>
+         node *p, *q;<br>
+         int val;<br>
+         cout<<&quot;\n Enter data of node : &quot;;<br>
+         cin>>val;<br>
+         p=new node();<br>
+         p->data=val;<br>
+         p->next=NULL;<br>
+         <br>
+         if(head==NULL)<br>
+         {<br>
+         return p;<br>
+         }<br>
+         else<br>
+         {<br>
+         q=head;<br>
+         while(q->next!=NULL)<br>
+         {<br>
+         q=q->next;<br>
+         } <br>
+         <br>
+         q->next=p;<br>
+         return head; <br>
+         }<br>
+         }<br>
+         <br>
+         node* DeleteStart(node *head)<br>
+         {<br>
+         node *p;<br>
+         if(head==NULL)<br>
+         {<br>
+         cout<<&quot;\n Link List is empty... So we cant delete the node......&quot;;<br>
+         return NULL;<br>
+         }<br>
+         else<br>
+         {<br>
+         p=head->next;<br>
+         delete head;<br>
+         return p;<br>
+         }<br>
+         }<br>
+         <br>
+         node* DeleteMiddle(node *head)<br>
+         {<br>
+         node *p, *q;<br>
+         if(head==NULL)<br>
+         {<br>
+         cout<<&quot;\n Link List is empty... So we cant delete the node......&quot;;<br>
+         return NULL;<br>
+         }<br>
+         else<br>
+         {<br>
+         int loc;<br>
+         cout<<&quot;\n Enter Location for Deleting new node from Middle : &quot;;<br>
+         cin>>loc;<br>
+         p=head;<br>
+         <br>
+         for(int i=1;i<loc-1;i++)<br>
+         {<br>
+         p=p->next;<br>
+         }<br>
+         <br>
+         if(loc==1)<br>
+         {<br>
+         cout<<&quot;\n You Enterd 1st position ..It is not middle position of node...&quot;;<br>
+         }<br>
+         else<br>
+         {<br>
+         q=p->next;<br>
+         p->next=q->next;<br>
+         delete q;<br>
+         return head;<br>
+         }<br>
+         }<br>
+         }<br>
+         <br>
+         node* DeleteEnd(node *head)<br>
+         {<br>
+         node *p, *q;<br>
+         <br>
+         if(head==NULL || head->next==NULL)<br>
+         {<br>
+         return head;<br>
+         }<br>
+         else<br>
+         {<br>
+         q=head;<br>
+         while(q->next->next!=NULL)<br>
+         {<br>
+         q=q->next;<br>
+         } <br>
+         <br>
+         p=q->next;<br>
+         q->next=NULL;<br>
+         delete p;<br>
+         return head; <br>
+         }<br>
+         }<br>
+        };<br>
+        <br>
+        int main()<br>
+        {<br>
+         SLL sll;<br>
+         node *HEAD;<br>
+         HEAD=NULL;<br>
+         int key;<br>
+         <br>
+         do<br>
+         {<br>
+         cout<<&quot;\n | press - 1 | for Creation of SLL &quot;;<br>
+         cout<<&quot;\n | press - 2 | for Printing of SLL &quot;;<br>
+         cout<<&quot;\n | press - 3 | for Inserting node at begin of SLL &quot;;<br>
+         cout<<&quot;\n | press - 4 | for Inserting node at middle of SLL &quot;;<br>
+         cout<<&quot;\n | press - 5 | for Inserting node at end of SLL &quot;;<br>
+         cout<<&quot;\n | press - 6 | for Deleting a node from start of SLL &quot;;<br>
+         cout<<&quot;\n | press - 7 | for Deleting a node from middle of SLL &quot;;<br>
+         cout<<&quot;\n | press - 8 | for Deleting a node from end of SLL &quot;;<br>
+         cout<<&quot;\n | press - 9 | for Counting nodes of SLL &quot;;<br>
+         cout<<&quot;\n | press - 10 |for Searching node in SLL &quot;; <br>
+         cout<<&quot;\n | press - 0 | for Exit \n&quot;;<br>
+         cout<<&quot;\n Enter your choise : &quot;;<br>
+         cin>>key;<br>
+         <br>
+         switch(key)<br>
+         {<br>
+         case 1: <br>
+         HEAD=sll.create();<br>
+         break;<br>
+         case 2: <br>
+         sll.print(HEAD);<br>
+         break;<br>
+         case 3: <br>
+         HEAD=sll.InsertBegin(HEAD);<br>
+         break;<br>
+         case 4: <br>
+         HEAD=sll.InsertMiddle(HEAD);<br>
+         break; <br>
+         case 5: <br>
+         HEAD=sll.InsertEnd(HEAD);<br>
+         break; <br>
+         case 6: <br>
+         HEAD=sll.DeleteStart(HEAD);<br>
+         break;<br>
+         case 7: <br>
+         HEAD=sll.DeleteMiddle(HEAD);<br>
+         break;<br>
+         case 8: <br>
+         HEAD=sll.DeleteEnd(HEAD);<br>
+         break;<br>
+         case 9: <br>
+         sll.CountNode(HEAD);<br>
+         break;<br>
+         case 10: <br>
+         sll.SearchNode(HEAD);<br>
+         break;<br>
+         default :<br>
+         cout<<&quot;\n Thank You....... &quot;;<br>
+         return 0;<br>
+         break; <br>
+         }<br>
+         }while(key==1 || key==2 || key==3 || key==4 || key==5 || key==6 || key==7 || key==8 || key==9 || key==10);<br>
+         <br>
+        }<br>
+        
+</P>
+
+<h2>Addition of two matrix</h2>
+<p>
+    #include<iostream><br>
+        using namespace std;<br>
+        <br>
+        int main(){<br>
+         int r, c;<br>
+         cout<<&quot;Enter rows count : &quot;;<br>
+         cin>>r;<br>
+         cout<<&quot;Enter columns count : &quot;;<br>
+         cin>>c;<br>
+         cout<<&quot;Enter elements for 1st matrix : &quot;<<endl;<br>
+         int arr1[r][c], arr2[r][c], sum[r][c];<br>
+         for(int i = 0; i < r; i++){<br>
+         for(int j = 0; j < c; j++){<br>
+         cin>>arr1[i][j];<br>
+         }<br>
+         }<br>
+         cout<<&quot;Enter elements for 2nd matrix : &quot;<<endl;<br>
+         for(int i = 0; i < r; i++){<br>
+         for(int j = 0; j < c; j++){<br>
+         cin>>arr2[i][j];<br>
+         }<br>
+         }<br>
+         //Addition of Two Matrix<br>
+         for(int i = 0; i < r; i++){<br>
+         for(int j = 0; j < c; j++){<br>
+         sum[i][j] = arr1[i][j] + arr2[i][j];<br>
+         }<br>
+         }<br>
+         //Display result<br>
+         cout<<&quot;Addition of Two Matrix : &quot;<<endl;<br>
+         for(int i = 0; i < r; i++){<br>
+         for(int j = 0; j < c; j++){<br>
+         cout<<sum[i][j]<<&quot; &quot;;<br>
+         }<br>
+         cout<<endl;<br>
+         }<br>
+         return 0;<br>
+        }
+
+    </p>
+
+    <h2>Mulitplication of two matrix</h2>
+    <p>
+
+        #include<iostream><br>
+            using namespace std;<br>
+            <br>
+            int main(){<br>
+             int r, c;<br>
+             cout<<&quot;Enter rows count : &quot;;<br>
+             cin>>r;<br>
+             cout<<&quot;Enter columns count : &quot;;<br>
+             cin>>c;<br>
+             cout<<&quot;Enter elements for 1st matrix : &quot;<<endl;<br>
+             int arr1[r][c], arr2[r][c], mul[r][c];<br>
+             for(int i = 0; i < r; i++){<br>
+             for(int j = 0; j < c; j++){<br>
+             cin>>arr1[i][j];<br>
+             }<br>
+             }<br>
+             cout<<&quot;Enter elements for 2nd matrix : &quot;<<endl;<br>
+             for(int i = 0; i < r; i++){<br>
+             for(int j = 0; j < c; j++){<br>
+             cin>>arr2[i][j];<br>
+             }<br>
+             }<br>
+             <br>
+             //Initialize zero to indexes<br>
+             for(int i = 0; i < r; i++){<br>
+             for(int j = 0; j < c; j++){<br>
+             mul[i][j] = 0;<br>
+             }<br>
+             }<br>
+             <br>
+             <br>
+             //Multiplication operation <br>
+             for(int i = 0; i < r; i++){<br>
+             for(int j = 0; j < c; j++){<br>
+             for(int k = 0; k < c; k++){<br>
+             mul[i][j] += arr1[i][k] * arr2[k][j];<br>
+             }<br>
+             }<br>
+             }<br>
+             <br>
+             //Diplay result <br>
+             cout<<&quot;Multiplication of Two Matrix :&quot;<<endl;<br>
+             for(int i = 0; i < r; i++){<br>
+             for(int j = 0; j < c; j++){<br>
+             cout<<mul[i][j]<<&quot; &quot;;<br>
+             }<br>
+             cout<<endl;<br>
+             }<br>
+             return 0;<br>
+             <br>
+            }
+    </p>
+
+    <h2>transpose matrix</h2>
+    <p>
+        #include<iostream><br>
+            using namespace std;<br>
+            <br>
+            int main(){<br>
+             int r, c;<br>
+             cout<<&quot;Enter size of row : &quot;;<br>
+             cin>>r;<br>
+             cout<<&quot;Enter size of Column : &quot;;<br>
+             cin>>c;<br>
+             int arr[r][c], transpose[c][r];<br>
+             for(int i = 0; i < r; i++){<br>
+             for(int j = 0; j < c; j++){<br>
+             cin>>arr[i][j];<br>
+             }<br>
+             } <br>
+             <br>
+             cout<<&quot;transpose : &quot;<<endl;<br>
+             for(int i = 0; i < c; i++){<br>
+             for(int j = 0; j < r; j++){<br>
+             cout<<arr[j][i]<<&quot; &quot;;<br>
+             }<br>
+             cout<<endl;<br>
+             }<br>
+            }
+    </p>
+
+    <h2>Selection sort</h2>
+    <p>
+
+        #include<iostream><br>
+            using namespace std;<br>
+            <br>
+            int main(){<br>
+             int n;<br>
+             cout<<&quot;Enter total no. of Student's : &quot;;<br>
+             cin>>n;<br>
+             int arr[n];<br>
+             cout<<&quot;Enter percentage of Students : &quot;<<endl;<br>
+             for(int i = 0; i < n; i++){<br>
+             cin>>arr[i];<br>
+             }<br>
+             int temp, min;<br>
+             for(int i = 0; i < n-1; i++){<br>
+             min = i;<br>
+             for(int j = i+1; j < n; j++){<br>
+             if(arr[j] < arr[min]){<br>
+             min = j;<br>
+             }<br>
+             }<br>
+             <br>
+             if(min != i){<br>
+             temp = arr[i];<br>
+             arr[i] = arr[min];<br>
+             arr[min] = temp;<br>
+             }<br>
+             }<br>
+             <br>
+             for(int i = 0; i < n; i++){<br>
+             cout<<arr[i]<<&quot; &quot;;<br>
+             }<br>
+             return 0;<br>
+            }
+    </p>
+
+    <h2>Bubble sort</h2>
+    <p>
+        <br>
+#include<iostream><br>
+using namespace std;<br>
+<br>
+int main(){<br>
+ int n;<br>
+ cout<<&quot;Enter total no. of Student''s : &quot;;<br>
+ cin>>n;<br>
+ float arr[n];<br>
+ cout<<&quot;Enter Percentage of each Student : &quot;<<endl;<br>
+ for(int i = 0; i < n; i++){<br>
+ cin>>arr[i];<br>
+ }<br>
+ <br>
+ float temp;<br>
+ for(int i = 0; i < n; i++){<br>
+ for(int j = 0; j < n-1; j++){<br>
+ if(arr[j] > arr[j+1]){<br>
+ temp = arr[j];<br>
+ arr[j] = arr[j+1];<br>
+ arr[j+1] = temp;<br>
+ }<br>
+ }<br>
+ }<br>
+ cout<<&quot;Top Scorers : &quot;<<endl;<br>
+ for(int i = n-1; i >= 5; i--){<br>
+ cout<<arr[i]<<endl;<br>
+ }<br>
+ return 0;<br>
+}
+    </p>
+
+    <h2>Linear search</h2>
+    <p>
+        #include<iostream><br>
+            using namespace std;<br>
+            <br>
+            int main(){<br>
+             int n;<br>
+             cout<<&quot;Enter size of an array : &quot;;<br>
+             cin>>n;<br>
+             int arr[n];<br>
+             cout<<&quot;Enter &quot;<<n<<&quot; Student's Roll No. :&quot;<<endl;<br>
+             for(int i = 0; i < n; i++){<br>
+             cin>>arr[i];<br>
+             }<br>
+             int key;<br>
+             cout<<&quot;Enter key element :&quot;<<endl;<br>
+             cin>>key;<br>
+             int k = 0;<br>
+             for(int i = 0; i < n; i++){<br>
+             if(key == arr[i]){<br>
+             cout<<&quot;Key &quot;<<key<<&quot; is Found at position &quot;<<i+1<<&quot;.&quot;<<endl;<br>
+             k = 1;<br>
+             break;<br>
+             }<br>
+             }<br>
+             if(k == 0){<br>
+             cout<<&quot;Key &quot;<<key<<&quot; is not Found.&quot;<<endl;<br>
+             }<br>
+             return 0;<br>
+            }
+    </p>
+
+    <h2>stack</h2>
+    <p>
+        #include<iostream><br>
+            using namespace std;<br>
+            #define N 100<br>
+            int initialize(), isFull(), isEmpty(), Push(), Pop(), Print();<br>
+            int data[N], top;<br>
+            <br>
+            int initialize(){<br>
+             top = -1;<br>
+            }<br>
+            <br>
+            int isFull(){<br>
+             if(top == N-1){<br>
+             return 1;<br>
+             }<br>
+             else{<br>
+             return 0;<br>
+             }<br>
+            }<br>
+            <br>
+            int isEmpty(){<br>
+             if(top == -1){<br>
+             return 1;<br>
+             }<br>
+             else{<br>
+             return 0;<br>
+             }<br>
+            }<br>
+            <br>
+            int Push(){<br>
+             if(isFull() == 0){<br>
+             int no;<br>
+             cout<<&quot;Enter no that u want to add : &quot;;<br>
+             cin>>no;<br>
+             top++;<br>
+             data[top] = no;<br>
+             cout<<&quot;Data added successfuly&quot;<<endl; <br>
+             }<br>
+             else{<br>
+             cout<<&quot;Stack is Already full...&quot;<<endl;<br>
+             }<br>
+            }<br>
+            <br>
+            int Pop(){<br>
+             if(isEmpty() == 0){<br>
+             int x;<br>
+             x = data[top];<br>
+             top--;<br>
+             cout<<&quot;Data popped successfully&quot;<<endl; <br>
+             }<br>
+             else{<br>
+             cout<<&quot;Stack is Empty&quot;<<endl;<br>
+             }<br>
+            }<br>
+            <br>
+            int Print(){<br>
+             for(int i = 0; i <= top; i++){<br>
+             cout<<data[i]<<&quot; &quot;;<br>
+             }<br>
+             cout<<endl<<&quot;hello&quot;;<br>
+            }<br>
+            int main(){<br>
+             initialize();<br>
+             Push();<br>
+             Push();<br>
+             Pop();<br>
+             Print();<br>
+             return 0;<br>
+            }
+    </p>
+
+    <h2>Binay search</h2>
+    <p>
+        #include<iostream><br>
+            using namespace std;<br>
+            <br>
+            int main(){<br>
+             int n;<br>
+             cout<<&quot;Enter size of an array : &quot;;<br>
+             cin>>n;<br>
+             int arr[n];<br>
+             cout<<&quot;Enter elements in array : &quot;<<endl;<br>
+             for(int i = 0; i < n ; i++){<br>
+             cin>>arr[i];<br>
+             }<br>
+             <br>
+             int mid, start = 0, end = n-1, key, found = 0;<br>
+             while(start <= end){<br>
+             mid = (start + end)/2;<br>
+             if(key == arr[mid]){<br>
+             cout<<&quot;Key &quot;<<key<<&quot; is found at &quot;<<mid+1;<br>
+             found = 1;<br>
+             break;<br>
+             }<br>
+             else if(key < arr[mid]){<br>
+             end = mid - 1;<br>
+             }else{<br>
+             start = mid + 1;<br>
+             }<br>
+             }<br>
+             if(found == 0){<br>
+             cout<<&quot;Key is not found&quot;<<endl;<br>
+             }<br>
+             return 0;<br>
+            }
+    </p>
+
+    <h2>Queue</h2>
+    <p>
+        #include<iostream><br>
+            using namespace std;<br>
+            #define n 100<br>
+            int arr[n], front, rear;<br>
+            int initailize(), isFull(), isEmpty(), Enqueue(), Dequeue(), Peek();<br>
+            <br>
+            int initialize(){<br>
+             front = rear = -1;<br>
+            }<br>
+            <br>
+            int isFull(){<br>
+             if(rear == n - 1){<br>
+             return 1;<br>
+             }<br>
+             else{<br>
+             return 0;<br>
+             }<br>
+            }<br>
+            <br>
+            int isEmpty(){<br>
+             if(front == -1 || front > rear){<br>
+             return 1;<br>
+             }else{<br>
+             return 0;<br>
+             }<br>
+            }<br>
+            <br>
+            int Enqueue(){<br>
+             if(isFull() == 0){<br>
+             cout<<&quot;Enter element to add : &quot;;<br>
+             int no;<br>
+             cin>>no;<br>
+             rear++;<br>
+             arr[rear] = no;<br>
+             if(front == -1){<br>
+             front = 0;<br>
+             }<br>
+             }else{<br>
+             cout<<&quot;Sorry, Queue is already full&quot;;<br>
+             }<br>
+            }<br>
+            <br>
+            int Dequeue(){<br>
+             if(isEmpty() == 0){<br>
+             cout<<arr[front]<<&quot; is deleted from Queue.&quot;<<endl;<br>
+             front++;<br>
+             }<br>
+            }<br>
+            <br>
+            int Peek(){<br>
+             cout<<&quot;Queue Elements : &quot;<<endl;<br>
+             for(int i = front; i <= rear; i++){<br>
+             cout<<arr[i]<<&quot; &quot;;<br>
+             }<br>
+            }<br>
+            int main(){<br>
+             initialize();<br>
+             Enqueue();<br>
+             Enqueue();<br>
+             Enqueue();<br>
+             Dequeue();<br>
+             Peek();<br>
+             return 0;<br>
+            }
+    </p>
+
+    <h2>Job Queue</h2>
+    <p>
+        #include<iostream><br>
+            using namespace std;<br>
+            <br>
+            class Queue{<br>
+             public:<br>
+             int front, rear, arr[100], size;<br>
+             void setData(){<br>
+             cout<<&quot;Enter maximum size of Job : &quot;;<br>
+             cin>>size;<br>
+             int arr[size];<br>
+             }<br>
+             int isFull(){<br>
+             if(rear == size - 1){<br>
+             return 1;<br>
+             }else{<br>
+             return 0;<br>
+             }<br>
+             }<br>
+             int isEmpty(){<br>
+             if(front == -1 || front > rear){<br>
+             return 1;<br>
+             }else{<br>
+             return 0;<br>
+             }<br>
+             }<br>
+             <br>
+             void Enqueue(){<br>
+             if(isFull() == 0){<br>
+             cout<<&quot;Enter a Job : &quot;;<br>
+             int n;<br>
+             cin>>n;<br>
+             rear++;<br>
+             arr[rear] = n;<br>
+             if(front == -1){<br>
+             front = 0;<br>
+             } <br>
+             }else{<br>
+             cout<<&quot;Job queue is full.&quot;<<endl;<br>
+             }<br>
+             }<br>
+             <br>
+             void Dequeue(){<br>
+             if(isEmpty() == 0){<br>
+             cout<<arr[front]<<&quot; is deleted.&quot;<<endl;<br>
+             front++;<br>
+             }else{<br>
+             cout<<&quot;Job queue is already empty&quot;<<endl;<br>
+             }<br>
+             }<br>
+             <br>
+             void Print(){<br>
+             cout<<&quot;Job Queue : &quot;<<endl;<br>
+             for(int i = front; i <= rear; i++){<br>
+             cout<<arr[i]<<&quot; &quot;;<br>
+             }<br>
+             }<br>
+            };<br>
+            int main(){<br>
+             Queue q;<br>
+             q.front = -1;<br>
+             q.rear = -1;<br>
+             q.setData();<br>
+             q.Enqueue();<br>
+             q.Enqueue();<br>
+             q.Dequeue();<br>
+             q.Print(); <br>
+             return 0;<br>
+            }
+    </p>
+
+</body>
+</html>
